@@ -1,0 +1,11 @@
+{
+  "name": "FinTrack",
+  "short_name": "FinTrack",
+  "icons": [
+    { "src": "assets/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "assets/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ],
+  "theme_color": "#5B2EE5",
+  "background_color": "#FFFFFF",
+  "display": "browser"
+}

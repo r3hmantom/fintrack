@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FinTrack — Know where your money goes</title>
+<meta name="description" content="FinTrack is a private money tracker for Android. Add an expense in seconds, set budgets that tell the truth, and split bills with friends who don't even need the app. No sign-up. Works offline.">
+<link rel="canonical" href="https://r3hmantom.github.io/fintrack/">
+<meta name="theme-color" content="#5B2EE5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F0D14" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FinTrack">
+<meta property="og:title" content="FinTrack — Know where your money goes">
+<meta property="og:description" content="Track spending, split bills with friends, and see what's left each month. Private, offline, no sign-up.">
+<meta property="og:url" content="https://r3hmantom.github.io/fintrack/">
+<meta property="og:image" content="https://r3hmantom.github.io/fintrack/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="FinTrack on a phone: Home with this month's spending, accounts and bills due soon.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FinTrack — Know where your money goes">
+<meta name="twitter:description" content="Track spending, split bills with friends, and see what's left each month. Private, offline, no sign-up.">
+<meta name="twitter:image" content="https://r3hmantom.github.io/fintrack/assets/og.png">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
+<link rel="preload" as="image" href="assets/screens/home.jpg" media="(prefers-color-scheme: light)">
+<link rel="preload" as="image" href="assets/screens/home_dark.jpg" media="(prefers-color-scheme: dark)">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "FinTrack",
+  "operatingSystem": "Android",
+  "applicationCategory": "FinanceApplication",
+  "description": "A private money tracker: add expenses in seconds, set budgets, split bills with friends and see reports. No sign-up, works offline, data stays on your phone.",
+  "url": "https://r3hmantom.github.io/fintrack/",
+  "image": "https://r3hmantom.github.io/fintrack/assets/og.png",
+  "screenshot": [
+    "https://r3hmantom.github.io/fintrack/assets/screens/home.jpg",
+    "https://r3hmantom.github.io/fintrack/assets/screens/entry.jpg",
+    "https://r3hmantom.github.io/fintrack/assets/screens/budgets.jpg",
+    "https://r3hmantom.github.io/fintrack/assets/screens/group.jpg",
+    "https://r3hmantom.github.io/fintrack/assets/screens/reports.jpg"
+  ]
+}
+</script>
+
+<style>
+/* Colours are FinTrack's own design tokens (design system v15). */
+:root{
+  --bg-page:#FFFFFF;--bg-surface:#FFFFFF;--bg-sunken:#F4F1EC;
+  --text-primary:#17141C;--text-secondary:#5E5863;--text-tertiary:#6F6976;
+  --border-subtle:#EEEAE4;--border-strong:#8A8373;
+  --brand:#5B2EE5;--brand-strong:#4A22C9;--brand-container:#EEE8FF;--on-brand-container:#2A0F80;--text-on-brand:#FFFFFF;
+  --income-fg:#0B7A3B;--income-bg:#E3F6EA;--owe-fg:#8A5300;--owe-bg:#FFF3D6;--error-fg:#B42318;--error-bg:#FDECEA;
+  --orange-soft:#FFEBDA;--orange-ink:#C2410C;--cyan-soft:#DDF6FC;--cyan-ink:#0E7490;--green-soft:#DFF7E7;--green-ink:#166534;
+  --violet-soft:#F3E8FF;--violet-ink:#7E22CE;--amber-soft:#FFF6CC;--amber-ink:#A16207;--blue-soft:#E0ECFF;--blue-ink:#1D4ED8;
+  --pink-soft:#FDE4F1;--pink-ink:#BE185D;
+  --device:#16131B;--shadow:0 24px 60px rgba(42,15,128,.16),0 4px 14px rgba(23,20,28,.08);
+  --radius-l:18px;--radius-xl:28px;--gutter:20px;--max:1120px;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg-page:#0F0D14;--bg-surface:#1A1720;--bg-sunken:#1E1A25;
+  --text-primary:#F4F1F7;--text-secondary:#B8B1C2;--text-tertiary:#9C94A8;
+  --border-subtle:#2A2534;--border-strong:#6E6679;
+  --brand:#B7A4FF;--brand-strong:#CFC2FF;--brand-container:#2D2152;--on-brand-container:#E4DBFF;--text-on-brand:#1C0B4A;
+  --income-fg:#7BE29A;--income-bg:#15351F;--owe-fg:#F5C55B;--owe-bg:#3A2C0E;--error-fg:#FF9A9A;--error-bg:#3D1719;
+  --orange-soft:#3D230F;--orange-ink:#FDBA74;--cyan-soft:#0F3540;--cyan-ink:#67E8F9;--green-soft:#12351F;--green-ink:#86EFAC;
+  --violet-soft:#2E1B47;--violet-ink:#D8B4FE;--amber-soft:#3A320E;--amber-ink:#FDE047;--blue-soft:#172A4A;--blue-ink:#93C5FD;
+  --pink-soft:#3D1529;--pink-ink:#F9A8D4;
+  --device:#000;--shadow:0 24px 60px rgba(0,0,0,.5),0 4px 14px rgba(0,0,0,.4);
+}}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:80px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg-page);color:var(--text-primary);font:400 17px/1.55 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-feature-settings:"tnum" 0;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--brand);outline-offset:3px;border-radius:8px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+.skip{position:absolute;left:-999px;top:8px;background:var(--brand);color:var(--text-on-brand);padding:10px 16px;border-radius:999px;z-index:20;text-decoration:none;font-weight:700}
+.skip:focus{left:12px}
+.num{font-variant-numeric:tabular-nums}
+
+/* Header */
+.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg-page) 86%,transparent);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid transparent}
+.top .wrap{display:flex;align-items:center;gap:24px;min-height:68px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;font-size:20px;letter-spacing:-.4px}
+.mark{width:36px;height:36px;border-radius:11px;background:#5B2EE5;display:grid;place-items:center;flex:none}
+.mark svg{width:20px;height:20px}
+.nav{display:flex;gap:4px;margin-left:auto}
+.nav a{text-decoration:none;font-weight:600;font-size:15px;color:var(--text-secondary);padding:10px 12px;border-radius:999px}
+.nav a:hover{color:var(--text-primary);background:var(--bg-sunken)}
+@media (max-width:860px){.nav{display:none}.top .btn{margin-left:auto}}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 24px;border-radius:999px;font-weight:700;font-size:16px;text-decoration:none;border:0;cursor:pointer;white-space:nowrap}
+.btn-primary{background:var(--brand);color:var(--text-on-brand)}
+.btn-primary:hover{background:var(--brand-strong)}
+.btn-line{border:1.5px solid var(--border-strong);color:var(--text-primary);background:transparent}
+.btn-line:hover{background:var(--bg-sunken)}
+.btn-sm{min-height:44px;padding:0 18px;font-size:15px}
+.btn svg{width:18px;height:18px}
+
+/* Hero */
+.hero{padding:56px 0 32px;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 12px 6px 8px;border-radius:999px;background:var(--brand-container);color:var(--on-brand-container);font-weight:600;font-size:14px}
+.eyebrow .dot{width:8px;height:8px;border-radius:999px;background:var(--brand)}
+h1{font-size:clamp(40px,6.2vw,64px);line-height:1.04;letter-spacing:-2px;font-weight:800;margin:18px 0 0}
+h1 em{font-style:normal;color:var(--brand)}
+.lead{font-size:clamp(18px,2.2vw,21px);color:var(--text-secondary);margin:20px 0 0;max-width:34ch}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.trust{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0 0;padding:0;list-style:none}
+.trust li{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:999px;background:var(--bg-sunken);font-size:14px;font-weight:600;color:var(--text-secondary)}
+.trust svg{width:16px;height:16px;color:var(--income-fg)}
+.phones{position:relative;display:flex;justify-content:center;min-height:560px}
+.phone{width:min(300px,72vw);border-radius:46px;padding:10px;background:var(--device);box-shadow:var(--shadow);flex:none}
+.phone img{border-radius:36px;width:100%;aspect-ratio:600/1336;object-fit:cover;background:var(--bg-sunken)}
+.phones .phone:nth-child(1){position:relative;z-index:2}
+.phones .phone:nth-child(2){position:absolute;width:min(250px,58vw);right:-10px;top:90px;z-index:1;transform:rotate(6deg);opacity:.98}
+.phones::before{content:"";position:absolute;inset:8% 6% 4%;background:radial-gradient(closest-side,var(--brand-container),transparent);z-index:0;border-radius:50%}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr}.phones{min-height:auto;margin-top:12px}.phones .phone:nth-child(2){display:none}}
+
+/* Sections */
+section{padding:88px 0}
+.kicker{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-tertiary)}
+h2{font-size:clamp(30px,4.2vw,44px);line-height:1.1;letter-spacing:-1.2px;font-weight:800;margin:10px 0 0}
+.sub{color:var(--text-secondary);font-size:18px;margin:14px 0 0;max-width:56ch}
+.center{text-align:center}.center .sub{margin-left:auto;margin-right:auto}
+
+/* Three promises */
+.promises{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:40px}
+.card{background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-xl);padding:24px}
+.icon{width:48px;height:48px;border-radius:15px;display:grid;place-items:center}
+.icon svg{width:24px;height:24px}
+.card h3{font-size:19px;margin:16px 0 6px;letter-spacing:-.3px}
+.card p{margin:0;color:var(--text-secondary);font-size:16px}
+@media (max-width:860px){.promises{grid-template-columns:1fr}}
+
+/* Feature rows */
+.feature .wrap{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.feature.flip .copy{order:2}
+.feature .shot{display:flex;justify-content:center}
+.feature .phone{width:min(290px,74vw)}
+.points{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:14px}
+.points li{display:flex;gap:12px;align-items:flex-start;font-size:17px}
+.points .tick{flex:none;width:26px;height:26px;border-radius:999px;background:var(--income-bg);color:var(--income-fg);display:grid;place-items:center;margin-top:1px}
+.points .tick svg{width:15px;height:15px}
+.points b{font-weight:700}
+.tinted{background:var(--bg-sunken)}
+@media (max-width:860px){.feature .wrap{grid-template-columns:1fr;gap:36px}.feature.flip .copy{order:0}}
+
+/* Pills that echo the app */
+.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:999px;font-size:14px;font-weight:700}
+.p-red{background:var(--error-bg);color:var(--error-fg)}.p-amber{background:var(--owe-bg);color:var(--owe-fg)}.p-green{background:var(--income-bg);color:var(--income-fg)}
+
+/* Grid of extras */
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:40px}
+.mini{display:flex;gap:14px;align-items:flex-start;padding:20px;border-radius:var(--radius-l);background:var(--bg-surface);border:1px solid var(--border-subtle)}
+.mini .icon{width:44px;height:44px;border-radius:13px;flex:none}
+.mini .icon svg{width:22px;height:22px}
+.mini h3{font-size:17px;margin:0 0 4px}
+.mini p{margin:0;font-size:15px;color:var(--text-secondary)}
+@media (max-width:860px){.grid{grid-template-columns:1fr}}
+
+/* Privacy band */
+.privacy{background:var(--brand-container);color:var(--on-brand-container);border-radius:36px;padding:56px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.privacy h2{color:var(--on-brand-container)}
+.privacy .sub{color:var(--on-brand-container);opacity:.9}
+.privacy ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.privacy li{display:flex;gap:12px;align-items:flex-start;background:var(--bg-page);color:var(--text-primary);border-radius:var(--radius-l);padding:14px 16px;font-size:16px}
+.privacy li svg{width:20px;height:20px;flex:none;color:var(--brand);margin-top:2px}
+@media (max-width:860px){.privacy{grid-template-columns:1fr;padding:32px 22px;border-radius:28px}}
+
+/* Dark mode pair */
+.pair{display:flex;justify-content:center;gap:28px;margin-top:44px;flex-wrap:wrap}
+.pair .phone{width:min(260px,70vw);--device:#000}
+
+/* FAQ */
+.faq{max-width:780px;margin:36px auto 0;display:grid;gap:10px}
+details{background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-l);padding:0 20px}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:64px;font-weight:700;font-size:17px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";width:10px;height:10px;border-right:2px solid var(--text-secondary);border-bottom:2px solid var(--text-secondary);transform:rotate(45deg) translateY(-3px);flex:none;transition:transform .2s}
+details[open] summary::after{transform:rotate(-135deg) translateY(-2px)}
+details p{margin:0 0 18px;color:var(--text-secondary);font-size:16px}
+
+/* Final CTA */
+.final{text-align:center;border-radius:36px;padding:64px 24px;background:var(--text-primary);color:var(--bg-page)}
+.final h2{color:var(--bg-page)}
+.final .sub{color:var(--bg-page);opacity:.8;margin-left:auto;margin-right:auto}
+.final .btn-primary{background:#B7A4FF;color:#1C0B4A}
+.final .btn-primary:hover{background:#CFC2FF}
+@media (prefers-color-scheme:dark){.final .btn-primary{background:#5B2EE5;color:#fff}.final .btn-primary:hover{background:#4A22C9}}
+.final .note{margin-top:16px;font-size:14px;opacity:.75}
+
+footer{padding:40px 0 56px;color:var(--text-tertiary);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center}
+footer a{color:var(--text-secondary)}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="./" aria-label="FinTrack home">
+      <span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4z"/><path d="M4 7V5h12v2"/><circle cx="16" cy="13.5" r="1.3"/></svg></span>
+      FinTrack
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#features">Features</a>
+      <a href="#split">Splitting</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-primary btn-sm" href="#get">Get early access</a>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow"><span class="dot" aria-hidden="true"></span>Android beta · coming to Google Play</span>
+        <h1 id="hero-title">Know where your money <em>goes.</em></h1>
+        <p class="lead">Track spending in seconds, split bills with friends, and see what's left each month. No sign-up. Your data stays on your phone.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#get">Get early access</a>
+          <a class="btn btn-line" href="#features">See how it works</a>
+        </div>
+        <ul class="trust" aria-label="Highlights">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>No account needed</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Works offline</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Rupees, dollars and more</li>
+        </ul>
+      </div>
+      <div class="phones">
+        <div class="phone">
+          <picture>
+            <source srcset="assets/screens/home_dark.jpg" media="(prefers-color-scheme: dark)">
+            <img src="assets/screens/home.jpg" width="600" height="1336" fetchpriority="high" alt="FinTrack Home: Rs 82,340 spent this month, Rs 8,170 less than this time last month. Accounts Cash, Meezan Bank and JazzCash, Rs 3,700 owed to you, and Electricity due today.">
+          </picture>
+        </div>
+        <div class="phone" aria-hidden="true">
+          <img src="assets/screens/entry.jpg" width="600" height="1336" alt="" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features" aria-labelledby="why-title" style="padding-top:56px">
+    <div class="wrap center">
+      <p class="kicker">Why FinTrack</p>
+      <h2 id="why-title">Money tracking that doesn't feel like homework</h2>
+      <p class="sub">Built around three moments: paying for something, checking how the month is going, and settling up with friends.</p>
+      <div class="promises" style="text-align:left">
+        <div class="card">
+          <div class="icon" style="background:var(--orange-soft);color:var(--orange-ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></div>
+          <h3>Add it in seconds</h3>
+          <p>Type the amount, tap a category, save. Notes, the date and tax or tip are right above the keyboard.</p>
+        </div>
+        <div class="card">
+          <div class="icon" style="background:var(--green-soft);color:var(--green-ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 20V11M12 20V5M19 20v-6"/></svg></div>
+          <h3>Know what's left</h3>
+          <p>Budgets that warn you early: "likely to exceed" shows up while there's still time to slow down.</p>
+        </div>
+        <div class="card">
+          <div class="icon" style="background:var(--cyan-soft);color:var(--cyan-ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c0-3 3-5 6-5s6 2 6 5M15 14c3 0 6 1.5 6 4.5"/></svg></div>
+          <h3>Split without the spreadsheet</h3>
+          <p>Flatmates, trips, dinners. Friends don't need the app; FinTrack works out who owes whom.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="feature" aria-labelledby="f1">
+    <div class="wrap">
+      <div class="copy">
+        <p class="kicker">Add an expense</p>
+        <h2 id="f1">Amount. Category. Done.</h2>
+        <p class="sub">The fastest way to stay on top of spending is to make logging it effortless.</p>
+        <ul class="points">
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><span><b>Your usual categories, one tap away.</b> The ones you used last come first.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><span><b>One receipt, several categories.</b> Split a supermarket run into food and household.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><span><b>Tax, tip and discount explained.</b> They break down what you paid; they never change it.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><span><b>Undo for five seconds.</b> Mistakes cost one tap.</span></li>
+        </ul>
+      </div>
+      <div class="shot"><div class="phone"><img src="assets/screens/entry.jpg" width="600" height="1336" loading="lazy" alt="New entry screen: Rs 1,250 paid from Cash, Transport selected, with Today, time, Just me and Note chips above a Save −Rs 1,250 button."></div></div>
+    </div>
+  </section>
+
+  <section class="feature flip tinted" aria-labelledby="f2">
+    <div class="wrap">
+      <div class="copy">
+        <p class="kicker">Budgets</p>
+        <h2 id="f2">Budgets that tell you the truth</h2>
+        <p class="sub">Not just "on track". FinTrack looks at how fast you're spending and tells you early.</p>
+        <div class="pill-row" aria-label="Budget states">
+          <span class="pill p-red">1 over</span><span class="pill p-amber">2 likely to exceed</span><span class="pill p-green">1 on track</span>
+        </div>
+        <ul class="points">
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><span><b>Monthly limits per category,</b> copied from last month in one tap.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><span><b>Only your share counts.</b> Paying the whole dinner bill doesn't blow your food budget.</span></li>
+        </ul>
+      </div>
+      <div class="shot"><div class="phone"><img src="assets/screens/budgets.jpg" width="600" height="1336" loading="lazy" alt="Budgets for October: Rs 18,510 remaining of Rs 51,000 with 20 days left. Entertainment on track, Food and Transport likely to exceed, Shopping Rs 990 over."></div></div>
+    </div>
+  </section>
+
+  <section id="split" class="feature" aria-labelledby="f3">
+    <div class="wrap">
+      <div class="copy">
+        <p class="kicker">Shared expenses</p>
+        <h2 id="f3">Split bills with anyone</h2>
+        <p class="sub">Add your flatmates or travel buddies by name. They don't need to install anything.</p>
+        <ul class="points">
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><span><b>Equally, by amounts, by % or by shares,</b> down to the last paisa.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><span><b>Who owes whom, in plain words.</b> "Sam paid · you owe Rs 1,500".</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><span><b>Settle up into the right account,</b> including part payments.</span></li>
+        </ul>
+      </div>
+      <div class="shot"><div class="phone"><img src="assets/screens/group.jpg" width="600" height="1336" loading="lazy" alt="Flatmates group: you're owed Rs 3,700. Ali paid you Rs 1,000; gas cylinder and internet bill you paid; groceries Sam paid, your share Rs 1,500."></div></div>
+    </div>
+  </section>
+
+  <section class="feature flip tinted" aria-labelledby="f4">
+    <div class="wrap">
+      <div class="copy">
+        <p class="kicker">Reports</p>
+        <h2 id="f4">One clear answer at a time</h2>
+        <p class="sub">What you spent, what came in, what you saved. Then where it went, and how this month compares.</p>
+        <ul class="points">
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><span><b>Spending, Income and Accounts tabs,</b> so nothing is thrown at you at once.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><span><b>Transfers and repayments never count as spending</b>, so the numbers stay honest.</span></li>
+        </ul>
+      </div>
+      <div class="shot"><div class="phone"><img src="assets/screens/reports.jpg" width="600" height="1336" loading="lazy" alt="Reports for October: you spent Rs 82,340, Rs 8,170 less than September; income Rs 185,000, saved Rs 102,660. Housing, Food, Transport, Shopping and Utilities bars, and a seven-month trend."></div></div>
+    </div>
+  </section>
+
+  <section class="feature" aria-labelledby="f5">
+    <div class="wrap">
+      <div class="copy">
+        <p class="kicker">Recurring payments</p>
+        <h2 id="f5">Rent, bills and subscriptions, remembered</h2>
+        <p class="sub">FinTrack reminds you when they're due. Nothing is recorded until you confirm, so a bill that changed this month is easy to fix.</p>
+        <ul class="points">
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><span><b>Monthly, weekly, yearly or once.</b> The 31st becomes the last day of shorter months.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><span><b>Due soon on Home,</b> with Record in one tap.</span></li>
+        </ul>
+      </div>
+      <div class="shot"><div class="phone"><img src="assets/screens/plans.jpg" width="600" height="1336" loading="lazy" alt="Recurring payments: Electricity Rs 8,500 due today with Record and Skip buttons; Netflix on the 15th and rent on the 1st coming up."></div></div>
+    </div>
+  </section>
+
+  <section class="tinted" aria-labelledby="more-title">
+    <div class="wrap center">
+      <p class="kicker">And the details</p>
+      <h2 id="more-title">Everything a real month needs</h2>
+      <div class="grid" style="text-align:left">
+        <div class="mini"><div class="icon" style="background:var(--blue-soft);color:var(--blue-ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h11l-3-3M17 17H6l3 3"/></svg></div><div><h3>Many currencies</h3><p>Accounts in rupees, dollars or euros, with daily exchange rates or your own.</p></div></div>
+        <div class="mini"><div class="icon" style="background:var(--violet-soft);color:var(--violet-ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18M7 15h3"/></svg></div><div><h3>Cash, bank, wallets, cards</h3><p>JazzCash, Easypaisa, bank accounts and credit cards, each with its own colour.</p></div></div>
+        <div class="mini"><div class="icon" style="background:var(--green-soft);color:var(--green-ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></div><div><h3>Backup in one file</h3><p>Export everything as JSON and restore it on a new phone. Import never overwrites.</p></div></div>
+        <div class="mini"><div class="icon" style="background:var(--amber-soft);color:var(--amber-ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/></svg></div><div><h3>Hide balances</h3><p>One tap masks every amount when someone's looking over your shoulder.</p></div></div>
+        <div class="mini"><div class="icon" style="background:var(--pink-soft);color:var(--pink-ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg></div><div><h3>Your Home, your way</h3><p>Show, hide and reorder sections. Lead with spending, budget or balances.</p></div></div>
+        <div class="mini"><div class="icon" style="background:var(--orange-soft);color:var(--orange-ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></div><div><h3>Light and dark</h3><p>Follows your phone, or pick one. Both are designed, not inverted.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="privacy" aria-labelledby="privacy-title">
+    <div class="wrap">
+      <div class="privacy">
+        <div>
+          <p class="kicker" style="color:var(--on-brand-container)">Privacy</p>
+          <h2 id="privacy-title">Your money stays on your phone</h2>
+          <p class="sub">FinTrack is local-first. There's no account to create and no server holding your finances.</p>
+        </div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span><b>No sign-up, no email.</b> Open it and start tracking.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8.8a15 15 0 0 1 20 0M5 12.6a10 10 0 0 1 14 0M8.5 16.3a5 5 0 0 1 7 0M12 20h.01"/><path d="M3 3l18 18"/></svg><span><b>Works fully offline.</b> The internet is only used for exchange rates, and only currency codes and dates are sent.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="4"/></svg><span><b>Anonymous usage is off by default.</b> If you turn it on, it never includes amounts, names, notes or categories.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="tinted" aria-labelledby="dark-title">
+    <div class="wrap center">
+      <p class="kicker">Dark mode</p>
+      <h2 id="dark-title">Easy on the eyes at midnight</h2>
+      <p class="sub">The same calm design, tuned for the dark.</p>
+      <div class="pair">
+        <div class="phone"><img src="assets/screens/home_dark.jpg" width="600" height="1336" loading="lazy" alt="Home in dark mode: Rs 82,340 spent this month, accounts and bills due soon."></div>
+        <div class="phone"><img src="assets/screens/reports_dark.jpg" width="600" height="1336" loading="lazy" alt="Reports in dark mode: spending by category and the monthly trend."></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" aria-labelledby="faq-title">
+    <div class="wrap">
+      <div class="center">
+        <p class="kicker">FAQ</p>
+        <h2 id="faq-title">Questions, answered</h2>
+      </div>
+      <div class="faq">
+        <details><summary>Do I need to create an account?</summary><p>No. FinTrack works without sign-up or email. Your records live in a database on your phone.</p></details>
+        <details><summary>Does it work without internet?</summary><p>Yes, everything works offline. When you're online, FinTrack fetches daily exchange rates for accounts in other currencies. Only currency codes and dates are sent, never your amounts.</p></details>
+        <details><summary>Do my friends need the app to split bills?</summary><p>No. Add people by name and FinTrack keeps track of who paid and who owes whom. You record repayments when they happen.</p></details>
+        <details><summary>Can I move my data to a new phone?</summary><p>Yes. Settings › Backup &amp; restore exports everything as one JSON file. Importing it on another phone adds your data and never overwrites what's already there.</p></details>
+        <details><summary>Which currencies are supported?</summary><p>Pakistani rupee by default, plus US dollars, euros, pounds, dirhams, riyals and many more. Each account has its own currency.</p></details>
+        <details><summary>Is there an iPhone version?</summary><p>FinTrack is Android-first. An iPhone version is planned.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section id="get" aria-labelledby="get-title" style="padding-top:24px">
+    <div class="wrap">
+      <div class="final">
+        <h2 id="get-title">Start knowing where your money goes</h2>
+        <p class="sub">FinTrack is in beta on Android and coming to Google Play. Ask for early access and you'll get the beta first.</p>
+        <div class="cta-row" style="justify-content:center">
+          <a class="btn btn-primary" href="mailto:r3hmantom@gmail.com?subject=FinTrack%20early%20access&amp;body=Hi%2C%20I%27d%20like%20to%20try%20the%20FinTrack%20beta%20on%20Android.">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            Request early access
+          </a>
+        </div>
+        <p class="note">Opens your email app. We'll only use your address to send the beta.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 FinTrack</span>
+    <span><a href="#privacy">Privacy</a> · <a href="#faq">FAQ</a> · <a href="mailto:r3hmantom@gmail.com">Contact</a></span>
+  </div>
+</footer>
+</body>
+</html>
