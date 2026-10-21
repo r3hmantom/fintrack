@@ -1,6 +1,6 @@
-# FinTrack website
+# Raqza website
 
-The landing page for FinTrack, a private money tracker for Android.
+The landing page for Raqza, a private money tracker for Android.
 Live at https://r3hmantom.github.io/fintrack/
 
 Plain HTML and CSS, no build step. Screenshots are real captures from the app
