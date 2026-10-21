@@ -1,0 +1,187 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -80 240 330" role="img" aria-label="Raqza, a friendly violet wallet that catches a coin and waves"><style>svg{--body:#6C3BFF;--lip:#4A22C9;--flap:#8B66FF;--flap-lip:#5B2EE5;--gold:#FFC93C;--gold-lip:#E09A00;--mint:#5EE6A0;--eye:#1C0B4A;--cheek:#FF7AB6;--ground:rgba(0,0,0,.3)}
+svg *{transform-box:fill-box}
+/* ---- timeline (s) ------------------------------------------------------
+     0.00 drop in · 0.62 eyes open · 0.85 looks up, "oh!" · 1.00 coin spins down
+     1.38 gulp, cheeks puff · 1.55 happy squint + burst · 1.62 hop
+     1.95 wordmark pops · 2.30 waves hello · 2.9+ breathes, blinks, glances    */
+
+  /* 1. drop in with squash and stretch; gulp; hop ------------------------- */
+  .wallet { transform-origin: 50% 100%; animation: drop .9s cubic-bezier(.3, 0, .3, 1) both, gulp .38s ease-out 1.38s, hop .55s cubic-bezier(.3, 0, .3, 1) 1.62s; }
+  @keyframes drop {
+    0%   { transform: translateY(-150px) scale(.92, 1.1); }
+    52%  { transform: translateY(0) scale(1.2, .78); }
+    70%  { transform: translateY(-16px) scale(.95, 1.06); }
+    85%  { transform: translateY(0) scale(1.05, .95); }
+    100% { transform: none; }
+  }
+  @keyframes gulp {
+    0%, 100% { transform: none; }
+    40% { transform: scale(1.12, .86); }
+    70% { transform: scale(.96, 1.05); }
+  }
+  @keyframes hop {
+    0%, 100% { transform: none; }
+    20% { transform: scale(1.08, .9); }
+    55% { transform: translateY(-24px) scale(.96, 1.05); }
+    85% { transform: translateY(0) scale(1.06, .94); }
+  }
+  /* idle breathing, on an inner group so it never fights the moves above */
+  .breath { transform-origin: 50% 100%; animation: breathe 3.2s ease-in-out 2.9s infinite; }
+  @keyframes breathe { 0%, 100% { transform: none; } 50% { transform: scale(1.025, .985); } }
+
+  .ground { transform-origin: 50% 50%; animation: groundDrop .9s ease-out both, groundHop .55s ease-in-out 1.62s; }
+  @keyframes groundDrop { 0% { transform: scale(.2); opacity: 0; } 52% { transform: scale(1.15); opacity: 1; } 100% { transform: none; opacity: 1; } }
+  @keyframes groundHop { 55% { transform: scale(.72); opacity: .55; } }
+
+  /* feet squash a little on each landing */
+  .feet { transform-origin: 50% 0%; animation: feet .9s ease-out both, feetHop .55s ease-in-out 1.62s; }
+  @keyframes feet { 0%, 45% { transform: scaleY(.4); } 60% { transform: scaleY(1.2); } 100% { transform: none; } }
+  @keyframes feetHop { 55% { transform: scaleY(.6); } }
+
+  /* 2. eyes: open, look up at the coin, happy squint, then idle -------- */
+  .eyes { transform-origin: 50% 50%; animation: open .25s ease-out .62s both, eyesAway 1s steps(1) 1.55s; }
+  @keyframes open { from { transform: scaleY(.08); } to { transform: none; } }
+  @keyframes eyesAway { 0% { opacity: 0; } 100% { opacity: 1; } }
+  .eyes .look { animation: blink 4s ease-in-out 3.4s infinite; transform-origin: 50% 50%; }
+  @keyframes blink { 0%, 92%, 100% { transform: none; } 95% { transform: scaleY(.08); } }
+  .gaze { animation: lookUp .7s ease-in-out .85s; }
+  @keyframes lookUp { 0%, 100% { transform: none; } 25%, 70% { transform: translate(1px, -7px); } }
+  .pupils { animation: glance 4s ease-in-out 3.4s infinite; }
+  @keyframes glance { 0%, 40%, 100% { transform: none; } 50%, 80% { transform: translateX(4px); } }
+  .happy { opacity: 0; animation: show 1s steps(1) 1.55s; }
+  @keyframes show { 0% { opacity: 1; } 100% { opacity: 0; } }
+
+  /* mouth: smile → "oh!" while the coin falls → smile */
+  .smile { animation: hide .55s steps(1) .85s; }
+  @keyframes hide { 0% { opacity: 0; } 100% { opacity: 1; } }
+  .oh { opacity: 0; transform-origin: 50% 50%; animation: oh .55s ease-out .85s; }
+  @keyframes oh { 0% { opacity: 1; transform: scale(.3); } 30% { transform: scale(1); } 99% { opacity: 1; } 100% { opacity: 0; } }
+
+  /* cheeks puff on the gulp, then stay rosy */
+  .cheeks { opacity: 0; transform-origin: 50% 50%; animation: blush .5s ease-out 1.38s forwards; }
+  @keyframes blush { 0% { opacity: 0; transform: scale(.6); } 40% { opacity: .8; transform: scale(1.35); } 100% { opacity: .55; transform: none; } }
+
+  /* 3. coin spins down into the slot ------------------------------------ */
+  .coin { opacity: 0; transform-origin: 50% 50%; animation: coin .55s cubic-bezier(.5, 0, .9, .6) 1s forwards; }
+  @keyframes coin {
+    0%   { opacity: 1; transform: translateY(-64px) scaleX(1); }
+    25%  { transform: translateY(-40px) scaleX(.15); }
+    50%  { transform: translateY(-16px) scaleX(1); }
+    75%  { transform: translateY(8px) scaleX(.15); }
+    92%  { opacity: 1; transform: translateY(58px) scaleX(1); }
+    100% { opacity: 0; transform: translateY(70px) scaleX(1); }
+  }
+
+  /* celebration burst from the slot */
+  .burst > * { opacity: 0; transform-origin: 50% 50%; animation: fly .75s cubic-bezier(.2, .7, .3, 1) 1.5s; }
+  .burst > :nth-child(1) { --x: -70px; --y: -46px; --r: -40deg; }
+  .burst > :nth-child(2) { --x: -38px; --y: -74px; --r: 30deg; animation-delay: 1.53s; }
+  .burst > :nth-child(3) { --x: 4px;   --y: -86px; --r: 90deg; animation-delay: 1.5s; }
+  .burst > :nth-child(4) { --x: 44px;  --y: -72px; --r: -60deg; animation-delay: 1.56s; }
+  .burst > :nth-child(5) { --x: 74px;  --y: -42px; --r: 45deg; animation-delay: 1.52s; }
+  @keyframes fly {
+    0%   { opacity: 0; transform: translate(0, 0) scale(.3) rotate(0); }
+    20%  { opacity: 1; }
+    100% { opacity: 0; transform: translate(var(--x), var(--y)) scale(1) rotate(var(--r)); }
+  }
+
+  /* arms: tucked in, then a wave hello */
+  /* arms pivot at the shoulder, where they meet the body */
+  .armL { transform-origin: 85% 18%; animation: cheerL .6s ease-out 1.55s; }
+  .armR { transform-origin: 15% 18%; animation: wave 1.2s ease-in-out 2.3s; }
+  @keyframes cheerL { 0%, 100% { transform: none; } 45% { transform: rotate(125deg); } }
+  @keyframes wave {
+    0%, 100% { transform: none; }
+    18% { transform: rotate(-140deg); }
+    32% { transform: rotate(-110deg); }
+    46% { transform: rotate(-145deg); }
+    60% { transform: rotate(-110deg); }
+    76% { transform: rotate(-140deg); }
+  }
+
+  @media (prefers-reduced-motion:reduce){*{animation:none!important}
+.cheeks{opacity:.55}.coin,.burst>*,.oh,.happy{opacity:0}.smile{opacity:1}}
+</style>
+      <defs>
+        <!-- the coin is only visible above the slot -->
+        <clipPath id="aboveSlot"><rect x="0" y="-200" width="240" height="291"/></clipPath>
+      </defs>
+
+      <!-- ground shadow -->
+      <ellipse class="ground" cx="120" cy="226" rx="64" ry="9" style="fill: var(--ground)"/>
+
+      <!-- coin falling into the slot -->
+      <g clip-path="url(#aboveSlot)">
+        <g class="coin">
+          <circle cx="120" cy="44" r="17" style="fill: var(--gold-lip)"/>
+          <circle cx="120" cy="41" r="17" style="fill: var(--gold)"/>
+          <circle cx="120" cy="41" r="10" fill="none" style="stroke: var(--gold-lip)" stroke-width="3"/>
+          <path d="M111 33 q4 -5 10 -5" stroke="#fff" stroke-opacity=".7" stroke-width="3" fill="none" stroke-linecap="round"/>
+        </g>
+      </g>
+
+      <g class="wallet">
+        <!-- feet -->
+        <g class="feet" style="fill: var(--lip)">
+          <rect x="78" y="200" width="28" height="20" rx="10"/>
+          <rect x="134" y="200" width="28" height="20" rx="10"/>
+        </g>
+        <g class="breath">
+          <!-- arms, tucked against the sides -->
+          <g class="arm armL">
+            <rect x="30" y="140" width="24" height="40" rx="12" style="fill: var(--lip)"/>
+            <rect x="30" y="136" width="24" height="40" rx="12" style="fill: var(--body)"/>
+          </g>
+          <g class="arm armR">
+            <rect x="186" y="140" width="24" height="40" rx="12" style="fill: var(--lip)"/>
+            <rect x="186" y="136" width="24" height="40" rx="12" style="fill: var(--body)"/>
+          </g>
+
+          <!-- body with a chunky darker underside, and a soft gloss -->
+          <rect x="46" y="94" width="148" height="114" rx="36" style="fill: var(--lip)"/>
+          <rect x="46" y="86" width="148" height="114" rx="36" style="fill: var(--body)"/>
+          <ellipse cx="74" cy="150" rx="10" ry="18" fill="#fff" opacity=".12"/>
+          <!-- flap, with its own lip -->
+          <path d="M46 124 V112 Q46 86 74 86 H166 Q194 86 194 112 V124 Q120 148 46 124 Z" style="fill: var(--flap-lip)"/>
+          <path d="M46 118 V112 Q46 86 74 86 H166 Q194 86 194 112 V118 Q120 142 46 118 Z" style="fill: var(--flap)"/>
+          <path d="M62 100 Q70 92 84 92" stroke="#fff" stroke-opacity=".35" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <!-- coin slot -->
+          <rect x="98" y="87" width="44" height="8" rx="4" style="fill: var(--lip)"/>
+
+          <!-- face -->
+          <g class="eyes">
+            <g class="look">
+              <ellipse cx="94" cy="162" rx="13" ry="15" fill="#fff"/>
+              <ellipse cx="146" cy="162" rx="13" ry="15" fill="#fff"/>
+              <g class="gaze">
+                <g class="pupils">
+                  <circle cx="97" cy="165" r="7" style="fill: var(--eye)"/>
+                  <circle cx="149" cy="165" r="7" style="fill: var(--eye)"/>
+                  <circle cx="99.5" cy="162" r="2.4" fill="#fff"/>
+                  <circle cx="151.5" cy="162" r="2.4" fill="#fff"/>
+                </g>
+              </g>
+            </g>
+          </g>
+          <g class="happy" fill="none" style="stroke: var(--eye)" stroke-width="5" stroke-linecap="round">
+            <path d="M83 166 Q94 152 105 166"/>
+            <path d="M135 166 Q146 152 157 166"/>
+          </g>
+          <g class="cheeks" style="fill: var(--cheek)">
+            <ellipse cx="72" cy="180" rx="9" ry="6"/>
+            <ellipse cx="168" cy="180" rx="9" ry="6"/>
+          </g>
+          <path class="smile" d="M110 183 Q120 192 130 183" fill="none" style="stroke: var(--eye)" stroke-width="4.5" stroke-linecap="round"/>
+          <ellipse class="oh" cx="120" cy="186" rx="6" ry="7" style="fill: var(--eye)"/>
+        </g>
+      </g>
+
+      <!-- celebration burst from the slot -->
+      <g class="burst" transform="translate(120 84)">
+        <circle cx="0" cy="0" r="6" style="fill: var(--gold)"/>
+        <path d="M0 -7 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2z" style="fill: var(--mint)"/>
+        <circle cx="0" cy="0" r="5" style="fill: var(--gold)"/>
+        <path d="M0 -7 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2z" fill="#fff"/>
+        <circle cx="0" cy="0" r="6" style="fill: var(--cheek)"/>
+      </g>
+    </svg>

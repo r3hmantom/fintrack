@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 76 200 156" role="img" aria-label="Raqza"><style>svg{--body:#6C3BFF;--lip:#4A22C9;--flap:#8B66FF;--flap-lip:#5B2EE5;--gold:#FFC93C;--gold-lip:#E09A00;--mint:#5EE6A0;--eye:#1C0B4A;--cheek:#FF7AB6;--ground:rgba(0,0,0,.3)}
+svg *{transform-box:fill-box}
+.happy,.oh{display:none}.cheeks{opacity:.55}.armL,.armR{transform:none}</style>
+      <defs>
+        <!-- the coin is only visible above the slot -->
+        <clipPath id="aboveSlot"><rect x="0" y="-200" width="240" height="291"/></clipPath>
+      </defs>
+
+      <!-- ground shadow -->
+      
+
+      <g class="wallet">
+        <!-- feet -->
+        <g class="feet" style="fill: var(--lip)">
+          <rect x="78" y="200" width="28" height="20" rx="10"/>
+          <rect x="134" y="200" width="28" height="20" rx="10"/>
+        </g>
+        <g class="breath">
+          <!-- arms, tucked against the sides -->
+          <g class="arm armL">
+            <rect x="30" y="140" width="24" height="40" rx="12" style="fill: var(--lip)"/>
+            <rect x="30" y="136" width="24" height="40" rx="12" style="fill: var(--body)"/>
+          </g>
+          <g class="arm armR">
+            <rect x="186" y="140" width="24" height="40" rx="12" style="fill: var(--lip)"/>
+            <rect x="186" y="136" width="24" height="40" rx="12" style="fill: var(--body)"/>
+          </g>
+
+          <!-- body with a chunky darker underside, and a soft gloss -->
+          <rect x="46" y="94" width="148" height="114" rx="36" style="fill: var(--lip)"/>
+          <rect x="46" y="86" width="148" height="114" rx="36" style="fill: var(--body)"/>
+          <ellipse cx="74" cy="150" rx="10" ry="18" fill="#fff" opacity=".12"/>
+          <!-- flap, with its own lip -->
+          <path d="M46 124 V112 Q46 86 74 86 H166 Q194 86 194 112 V124 Q120 148 46 124 Z" style="fill: var(--flap-lip)"/>
+          <path d="M46 118 V112 Q46 86 74 86 H166 Q194 86 194 112 V118 Q120 142 46 118 Z" style="fill: var(--flap)"/>
+          <path d="M62 100 Q70 92 84 92" stroke="#fff" stroke-opacity=".35" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <!-- coin slot -->
+          <rect x="98" y="87" width="44" height="8" rx="4" style="fill: var(--lip)"/>
+
+          <!-- face -->
+          <g class="eyes">
+            <g class="look">
+              <ellipse cx="94" cy="162" rx="13" ry="15" fill="#fff"/>
+              <ellipse cx="146" cy="162" rx="13" ry="15" fill="#fff"/>
+              <g class="gaze">
+                <g class="pupils">
+                  <circle cx="97" cy="165" r="7" style="fill: var(--eye)"/>
+                  <circle cx="149" cy="165" r="7" style="fill: var(--eye)"/>
+                  <circle cx="99.5" cy="162" r="2.4" fill="#fff"/>
+                  <circle cx="151.5" cy="162" r="2.4" fill="#fff"/>
+                </g>
+              </g>
+            </g>
+          </g>
+          <g class="happy" fill="none" style="stroke: var(--eye)" stroke-width="5" stroke-linecap="round">
+            <path d="M83 166 Q94 152 105 166"/>
+            <path d="M135 166 Q146 152 157 166"/>
+          </g>
+          <g class="cheeks" style="fill: var(--cheek)">
+            <ellipse cx="72" cy="180" rx="9" ry="6"/>
+            <ellipse cx="168" cy="180" rx="9" ry="6"/>
+          </g>
+          <path class="smile" d="M110 183 Q120 192 130 183" fill="none" style="stroke: var(--eye)" stroke-width="4.5" stroke-linecap="round"/>
+          <ellipse class="oh" cx="120" cy="186" rx="6" ry="7" style="fill: var(--eye)"/>
+        </g>
+      </g>
+
+      </svg>
